@@ -1,0 +1,22 @@
+#  These comments are for me to revise what key value pair do what.
+
+apiVersion: apps/v1 #Which version of the Kubernetes API you're using to create this object
+kind: Deployment # What kind of object you want to create [deployment, service etc]
+metadata: # Data that helps uniquely identify the object, including a name string, UID, and optional namespace
+  name: hellogo
+spec: #  What state you desire for the object
+  selector: # Define what selectors the Deployment uses to find the PODS that are related to it
+    matchLabels: # matchLabels is a map of {key,value} pairs. 
+      app: hellogo
+  replicas: 3 # Tells the deployment to run 1 pod 
+  template: # When creating new pods, this template will be used
+    metadata:
+      labels: # Labels used when searching / managing deployments
+        app: hellogopher
+    spec:
+      containers:
+      - name: hellogopher # Name of the Container
+        image: kubernetes/weather/api:1.0 # not use latest tag as it will try Dockerhub then
+        imagePullPolicy: IfNotPresent # Will only pull from DockerHub if not present already in Local docker
+        ports: # Ports to Expose
+        - containerPort: 8000
