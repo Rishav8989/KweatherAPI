@@ -20,3 +20,10 @@ spec: #  What state you desire for the object
         imagePullPolicy: IfNotPresent # Will only pull from DockerHub if not present already in Local docker
         ports: # Ports to Expose
         - containerPort: 8000
+        readinessProbe:
+          initialDelaySeconds: 5 # Time before starting to Probe status
+          timeoutSeconds: 1 # Time to wait before timeout
+          # HTTP probe
+          httpGet:
+            path: / # the path we use to probe
+            port: 9999
