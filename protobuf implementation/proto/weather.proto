@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package weather;
+
+message Location {
+    string name = 1;
+    string region = 2;
+    string country = 3;
+    float lat = 4;
+    float lon = 5;
+    string tz_id = 6;
+    int32 localtime_epoch = 7;
+    string localtime = 8;
+}
+
+message Condition {
+    string text = 1;
+    string icon = 2;
+    int32 code = 3;
+}
+
+message Current {
+    int32 last_updated_epoch = 1;
+    string last_updated = 2;
+    double temp_c = 3;
+    double temp_f = 4;
+    int32 is_day = 5;
+    Condition condition = 6;
+    double wind_mph = 7;
+    double wind_kph = 8;
+    int32 wind_degree = 9;
+    string wind_dir = 10;
+    double pressure_mb = 11;
+    double pressure_in = 12;
+    double precip_mm = 13;
+    double precip_in = 14;
+    int32 humidity = 15;
+    int32 cloud = 16;
+    double feelslike_c = 17;
+    double feelslike_f = 18;
+    double windchill_c = 19;
+    double windchill_f = 20;
+    double heatindex_c = 21;
+    double heatindex_f = 22;
+    double dewpoint_c = 23;
+    double dewpoint_f = 24;
+    double vis_km = 25;
+    double vis_miles = 26;
+    double uv = 27;
+    double gust_mph = 28;
+    double gust_kph = 29;
+}
+
+message WeatherResponse {
+    Location location = 1;
+    Current current = 2;
+}
